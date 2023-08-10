@@ -25,6 +25,15 @@ const Feed = () => {
 
   const [allPosts, setAllPosts] = useState([]);
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch("/api/prompt");
+      const data = await response.json();
+      setAllPosts(data);
+    };
+    fetchPosts();
+  }, []);
+
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
     return allPosts.filter(
@@ -48,15 +57,12 @@ const Feed = () => {
     );
   };
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch("/api/prompt");
-      const data = await response.json();
-      setAllPosts(data);
-    };
-    fetchPosts();
-  }, []);
+  const handleTagClick = (tagName) => {
+    setSearchText(tagName);
 
+    const searchResult = filterPrompts(tagName);
+    setSearchedResults(searchResult);
+  };
   return (
     <section className="feed">
       <form className="relative w-full flex-center">
@@ -69,7 +75,14 @@ const Feed = () => {
           className="search_input peer"
         />
       </form>
-      <PromptCardList data={allPosts} handleTagClick={() => {}} />
+      {searchText ? (
+        <PromptCardList
+          data={searchedResults}
+          handleTagClick={handleTagClick}
+        />
+      ) : (
+        <PromptCardList data={allPosts} handleTagClick={() => {}} />
+      )}
     </section>
   );
 };
