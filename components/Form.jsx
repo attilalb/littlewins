@@ -1,13 +1,14 @@
 import Link from "next/link";
+import Tags from "./Tags";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (
     <section className="w-full max-w-full flex-start flex-col">
       <h1 className="head_text text-left">
-        <span className="blue_gradient">{type} Post</span>
+        <span className="green_gradient">{type} a win.</span>
       </h1>
-      <p className="desc text-left max-w-md">
-        {type} and share amazing prompts.
+      <p className="desc mt-6 text-left max-w-md">
+        {type} a thing you are proud of today.
       </p>
 
       <form
@@ -16,12 +17,12 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
       >
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
-            Your AI Prompt
+            Your little win:
           </span>
           <textarea
             value={post.prompt}
             onChange={(e) => setPost({ ...post, prompt: e.target.value })}
-            placeholder="Enter your prompt here..."
+            placeholder="What did you achieve today?"
             className="form_textarea"
           />
         </label>
@@ -29,13 +30,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           <span className="font-satoshi font-semibold text-base text-gray-700">
             Tag
           </span>
-          <input
-            value={post.tag}
-            onChange={(e) => setPost({ ...post, tag: e.target.value })}
-            placeholder="#tag"
-            required
-            className="form_input"
-          />
+          <Tags post={post} />
         </label>
         <div className="flex-end mx-3 mb-5 gap-4">
           <Link href="/" className="text-gray-500 text-sm">
