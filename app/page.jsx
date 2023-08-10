@@ -1,16 +1,24 @@
 import Feed from "@components/Feed";
+import Link from "next/link";
 
 const Home = () => {
   return (
     <section className="w-full flex-center flex-col">
       <h1 className="head_text text-center">
-        Discover & Share <br className="max-md:hidden" />
-        <span className="orange_gradient text-center">AI-Powered Prompts</span>
+        Share your <br className="max-md:hidden" />
+        <span className="green_gradient text-center">little wins</span> with the
+        world.
       </h1>
       <p className="desc text-center">
-        Promptshare is an open-source platform where you can create and share
-        your favorite AI prompts and discover what others shared.
+        <span className="green_gradient ">littlewins</span> is an open-source
+        platform where you can share anything you're proud of without being
+        accused of bragging.
+        <br />
+        Got that job? Finished a project? Made some cookies?
       </p>
+      <Link href="/create-prompt" className="green_btn mt-6">
+        Share now
+      </Link>
 
       <Feed />
     </section>
