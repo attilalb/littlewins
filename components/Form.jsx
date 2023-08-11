@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import Tags from "./Tags";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   const [tagInput, setTagInput] = useState(""); // State for tag input
@@ -27,8 +28,8 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
       <h1 className="head_text text-left">
         <span className="green_gradient">{type} your win</span>
       </h1>
-      <p className="desc text-left max-w-md">
-        {type} and share amazing prompts.
+      <p className="desc mt-6 text-left max-w-md">
+        {type} a thing you are proud of today.
       </p>
 
       <form
@@ -51,6 +52,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           <span className="font-satoshi font-semibold text-base text-gray-700">
             Tags
           </span>
+
           <div className="flex  gap-2 items-center">
             <input
               value={tagInput}
@@ -77,6 +79,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
               </span>
             ))}
           </div>
+
         </label>
         <div className="flex-end mx-3 mb-5 gap-4">
           <Link href="/" className="text-gray-500 text-sm">
