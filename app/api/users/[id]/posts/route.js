@@ -1,16 +1,16 @@
 import { connectToDB } from "@utils/database";
-import Prompt from "@models/prompt";
+import LittleWin from "@models/littlewin";
 
 export const GET = async (req, { params }) => {
   try {
     await connectToDB();
 
-    const prompts = await Prompt.find({
+    const posts = await LittleWin.find({
       creator: params.id,
     }).populate("creator");
 
-    return new Response(JSON.stringify(prompts), { status: 200 });
+    return new Response(JSON.stringify(posts), { status: 200 });
   } catch (error) {
-    return new Response("Failed to fetch all prompts.", { status: 500 });
+    return new Response("Failed to fetch all posts.", { status: 500 });
   }
 };
