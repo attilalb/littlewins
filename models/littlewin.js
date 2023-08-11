@@ -7,11 +7,11 @@ const LittleWinSchema = new Schema({
   },
   story: {
     type: String,
-    required: false,
+    required: [true, "Story is required"],
   },
   tags: {
     type: [String],
-    required: false,
+    required: [true, "Tags are required"],
   },
 });
 

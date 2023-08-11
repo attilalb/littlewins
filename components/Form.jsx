@@ -5,12 +5,16 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   const [tagInput, setTagInput] = useState(""); // State for tag input
   const [tags, setTags] = useState(post.tags || []); // Array of tags
 
-  const addTag = () => {
-    if (tagInput.trim() !== "") {
-      setTags([...tags, tagInput.trim()]);
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" && tagInput.trim() !== "") {
+      event.preventDefault(); // Prevent form submission
+      const newTag = tagInput.trim();
+      setTags((prevTags) => [...prevTags, newTag]);
+      setPost((prevPost) => ({
+        ...prevPost,
+        tags: [...prevPost.tags, newTag],
+      }));
       setTagInput("");
-      setPost({ ...post, tags: [...tags] });
-      console.log(post);
     }
   };
 
@@ -40,6 +44,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             onChange={(e) => setPost({ ...post, story: e.target.value })}
             placeholder="What are you proud of today?"
             className="form_textarea"
+            required
           />
         </label>
         <label>
@@ -52,14 +57,8 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
               onChange={(e) => setTagInput(e.target.value)}
               placeholder="Add your tags here"
               className="form_input"
+              onKeyDown={handleKeyDown}
             />
-            <button
-              type="button"
-              onClick={addTag}
-              className="px-2 py-1.5 text-sm bg-green-500 h-12 rounded-md text-white text-xs"
-            >
-              Add Tag
-            </button>
           </div>
           <div className="mt-6">
             {tags.map((tag, index) => (

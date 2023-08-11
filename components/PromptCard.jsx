@@ -74,7 +74,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
           {post.tags.map((tag, index) => (
             <span
               key={index}
-              className="px-2 py-1 bg-green-500 text-white rounded-lg"
+              className="px-2 py-1 bg-green-500 text-white rounded-lg text-xs"
             >
               #{tag}
               {index !== post.tags.length - 1 && " "}
