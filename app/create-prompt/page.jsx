@@ -12,21 +12,30 @@ const CreatePrompt = () => {
 
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
-    prompt: "",
-    tag: "",
+    story: "",
+    tags: [],
   });
 
   const createPrompt = async (e) => {
     e.preventDefault();
     setSubmitting(true);
 
+    console.log(
+      "Request Payload:",
+      JSON.stringify({
+        prompt: post.prompt,
+        userId: session?.user.id,
+        tags: post.tags,
+      })
+    );
+
     try {
-      const res = await fetch("/api/prompt/new", {
+      const res = await fetch("/api/little-win/new", {
         method: "POST",
         body: JSON.stringify({
-          prompt: post.prompt,
+          story: post.story,
           userId: session?.user.id,
-          tag: post.tag,
+          tags: post.tags,
         }),
       });
 

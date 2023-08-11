@@ -1,5 +1,7 @@
 import { Schema, model, models } from "mongoose";
 
+const TagSchema = new Schema({ tag: String });
+
 const PromptSchema = new Schema({
   creator: {
     type: Schema.Types.ObjectId,
@@ -9,9 +11,9 @@ const PromptSchema = new Schema({
     type: String,
     required: [true, "Prompt is required"],
   },
-  tag: {
-    type: String,
-    required: [true, "Tag is required"],
+  tags: {
+    type: [TagSchema],
+    required: [true, "Prompt tags are required"],
   },
 });
 

@@ -21,8 +21,8 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   };
 
   const handleCopy = () => {
-    setCopied(post.prompt);
-    navigator.clipboard.writeText(post.prompt);
+    setCopied(post.story);
+    navigator.clipboard.writeText(post.story);
     setTimeout(() => setCopied(false), 3000);
   };
 
@@ -45,32 +45,42 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
             <h3 className="font-satoshi font-semibold text-gray-900">
               {post.creator?.username}
             </h3>
-            <p className="font-inter text-sm text-gray-500">
+            <p className="font-inter text-xs text-gray-500">
               {post.creator?.email}
             </p>
           </div>
         </div>
 
-        <div className="copy_btn" onClick={handleCopy}>
+        {/* <div className="copy_btn" onClick={handleCopy}>
           <Image
             src={
-              copied === post.prompt
+              copied === post.story
                 ? "/assets/icons/tick.svg"
                 : "/assets/icons/copy.svg"
             }
-            alt={copied === post.prompt ? "tick_icon" : "copy_icon"}
+            alt={copied === post.story ? "tick_icon" : "copy_icon"}
             width={12}
             height={12}
           />
-        </div>
+        </div> */}
       </div>
 
-      <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
+      <p className="my-4 font-satoshi text-sm text-gray-700">{post.story}</p>
       <p
         className="font-inter text-sm blue_gradient cursor-pointer"
-        onClick={() => handleTagClick && handleTagClick(post.tag)}
+        onClick={() => handleTagClick && handleTagClick(post.tags)}
       >
-        #{post.tag}
+        <div className="flex gap-2">
+          {post.tags.map((tag, index) => (
+            <span
+              key={index}
+              className="px-2 py-1 bg-green-500 text-white rounded-lg"
+            >
+              #{tag}
+              {index !== post.tags.length - 1 && " "}
+            </span>
+          ))}
+        </div>
       </p>
 
       {session?.user.id === post.creator?._id && pathName === "/profile" && (
