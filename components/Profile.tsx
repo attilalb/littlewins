@@ -1,6 +1,13 @@
 import PromptCard from "./PromptCard";
+import { ProfileProps } from "./types";
 
-const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
+const Profile: React.FC<ProfileProps> = ({
+  name,
+  desc,
+  data,
+  handleEdit,
+  handleDelete,
+}) => {
   return (
     <section className="w-full">
       <h1 className="head_text text-left">

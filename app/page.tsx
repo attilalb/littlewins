@@ -8,14 +8,14 @@ const Home = () => {
         <span className="green_gradient text-center">little wins</span> with the
         world.
       </h1>
-      <p className="desc text-center">
+      <p className="desc text-center mt-8">
         <span className="green_gradient">littlewins</span> is an open-source
         platform where you can share anything you're proud of without being
         accused of bragging.
         <br />
         Got that job? Finished a project? Made some cookies?
       </p>
-      <Link href="/create-prompt" className="green_btn mt-6">
+      <Link href="/create-prompt" className="green_btn mt-6" passHref>
         Share now
       </Link>
 

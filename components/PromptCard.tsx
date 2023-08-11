@@ -2,15 +2,20 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
+import { PromptCardProps } from "./types";
 
-const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
+const PromptCard: React.FC<PromptCardProps> = ({
+  post,
+  handleDelete,
+  handleEdit,
+  handleTagClick,
+}) => {
   const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
-
-  const [copied, setCopied] = useState("");
 
   const handleProfileClick = () => {
     console.log(post);

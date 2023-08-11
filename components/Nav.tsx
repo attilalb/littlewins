@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { Session } from "next-auth";
 import { GiClover } from "react-icons/gi";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
-const Nav = () => {
+const Nav: React.FC = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
@@ -18,6 +19,10 @@ const Nav = () => {
     };
     setupProviders();
   }, []);
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
 
   return (
     <nav className="flex-between w-full mb-16 pt-3">
@@ -33,7 +38,11 @@ const Nav = () => {
             <Link href="/create-prompt" className="green_btn">
               Share a Win
             </Link>
-            <button type="button" onClick={signOut} className="outline_btn">
+            <button
+              type="button"
+              onClick={handleSignOut}
+              className="outline_btn"
+            >
               Sign Out
             </button>
             <Link href="/profile">
@@ -49,18 +58,20 @@ const Nav = () => {
         ) : (
           <>
             {providers &&
-              Object.values(providers).map((provider) => {
-                return (
-                  <button
-                    key={provider.name}
-                    type="button"
-                    onClick={() => signIn(provider.id)}
-                    className="black_btn"
-                  >
-                    Sign In
-                  </button>
-                );
-              })}
+              Object.values(providers).map(
+                (provider: { id: string; name: string }) => {
+                  return (
+                    <button
+                      key={provider.name}
+                      type="button"
+                      onClick={() => signIn(provider.id)}
+                      className="black_btn"
+                    >
+                      Sign In
+                    </button>
+                  );
+                }
+              )}
           </>
         )}
       </div>
@@ -110,18 +121,20 @@ const Nav = () => {
         ) : (
           <>
             {providers &&
-              Object.values(providers).map((provider) => {
-                return (
-                  <button
-                    key={provider.name}
-                    type="button"
-                    onClick={() => signIn(provider.id)}
-                    className="black_btn"
-                  >
-                    Sign In
-                  </button>
-                );
-              })}
+              Object.values(providers).map(
+                (provider: { id: string; name: string }) => {
+                  return (
+                    <button
+                      key={provider.name}
+                      type="button"
+                      onClick={() => signIn(provider.id)}
+                      className="black_btn"
+                    >
+                      Sign In
+                    </button>
+                  );
+                }
+              )}
           </>
         )}
       </div>

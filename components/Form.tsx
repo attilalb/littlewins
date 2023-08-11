@@ -1,8 +1,14 @@
 import { useState } from "react";
 import Link from "next/link";
-import Tags from "./Tags";
+import { FormProps } from "./types";
 
-const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+const Form: React.FC<FormProps> = ({
+  type,
+  post,
+  setPost,
+  submitting,
+  handleSubmit,
+}) => {
   const [tagInput, setTagInput] = useState(""); // State for tag input
   const [tags, setTags] = useState(post.tags || []); // Array of tags
 
@@ -79,7 +85,6 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
               </span>
             ))}
           </div>
-
         </label>
         <div className="flex-end mx-3 mb-5 gap-4">
           <Link href="/" className="text-gray-500 text-sm">
