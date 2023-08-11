@@ -27,7 +27,7 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch("/api/prompt");
+      const response = await fetch("/api/little-win");
       const data = await response.json();
       setAllPosts(data);
     };
@@ -39,8 +39,8 @@ const Feed = () => {
     return allPosts.filter(
       (item) =>
         regex.test(item.creator.username) ||
-        regex.test(item.tag) ||
-        regex.test(item.prompt)
+        regex.test(item.tags) ||
+        regex.test(item.story)
     );
   };
 
