@@ -5,8 +5,8 @@ import { checkCustomRoutes } from "next/dist/lib/load-custom-routes";
 import { Children } from "react";
 
 export const metadata = {
-  title: "Promptshare",
-  description: "Discover & Share AI prompts",
+  title: "littlewins.",
+  description: "Share your little wins with the world.",
 };
 
 const RootLayout = ({ children }) => {
