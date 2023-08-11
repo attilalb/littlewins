@@ -9,7 +9,7 @@ const Home = () => {
         world.
       </h1>
       <p className="desc text-center">
-        <span className="green_gradient ">littlewins</span> is an open-source
+        <span className="green_gradient">littlewins</span> is an open-source
         platform where you can share anything you're proud of without being
         accused of bragging.
         <br />

@@ -30,7 +30,7 @@ const MyProfile = () => {
 
     if (hasConfirmed) {
       try {
-        await fetch(`/api/prompt/${post._id.toString()}`, {
+        await fetch(`/api/little-win/${post._id.toString()}`, {
           method: "DELETE",
         });
 
@@ -45,7 +45,7 @@ const MyProfile = () => {
   return (
     <Profile
       name={`My`}
-      desc="Welcome to your profile page"
+      desc="See all your previous posts"
       data={posts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}
