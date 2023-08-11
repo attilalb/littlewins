@@ -25,12 +25,13 @@ const Feed = () => {
 
   const [allPosts, setAllPosts] = useState([]);
 
+  const fetchPosts = async () => {
+    const response = await fetch("/api/little-win");
+    const data = await response.json();
+    setAllPosts(data);
+  };
+
   useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch("/api/little-win");
-      const data = await response.json();
-      setAllPosts(data);
-    };
     fetchPosts();
   }, []);
 
@@ -63,6 +64,7 @@ const Feed = () => {
     const searchResult = filterPrompts(tagName);
     setSearchedResults(searchResult);
   };
+
   return (
     <section className="feed">
       <form className="relative w-full flex-center">
@@ -75,11 +77,37 @@ const Feed = () => {
           className="search_input peer"
         />
       </form>
+
       {searchText ? (
-        <PromptCardList
-          data={searchedResults}
-          handleTagClick={handleTagClick}
-        />
+        <div>
+          <h3 className="text-xl font-semibold text-center mt-6">
+            <span className="font-light text-xl">Results for: </span>
+            {searchText}
+            {searchText && (
+              <>
+                <span className="font-light text-xl">
+                  {" "}
+                  ({searchedResults.length})
+                </span>
+                <br />
+                <h4 className="text-lg font-light text-center mt-4">
+                  Clear search
+                  <button
+                    type="button"
+                    onClick={() => setSearchText("")}
+                    className="ml-2"
+                  >
+                    &#10005;
+                  </button>
+                </h4>
+              </>
+            )}
+          </h3>
+          <PromptCardList
+            data={searchedResults}
+            handleTagClick={handleTagClick}
+          />
+        </div>
       ) : (
         <PromptCardList data={allPosts} handleTagClick={() => {}} />
       )}
